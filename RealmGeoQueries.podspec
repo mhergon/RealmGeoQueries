@@ -1,12 +1,12 @@
 Pod::Spec.new do |spec|
-  spec.name             = 'MPMoviePlayerController-Subtitles'
+  spec.name             = 'RealmGeoQueries'
   spec.platform         = :ios, "8.0"
-  spec.version          = '2.0.2'
-  spec.license          = { :type => 'MIT' }
-  spec.homepage         = 'https://github.com/mhergon/MPMoviePlayerController-Subtitles'
+  spec.version          = '1.0'
+  spec.license          = { :type => 'Apache' }
+  spec.homepage         = 'https://github.com/mhergon/RealmGeoQueries'
   spec.authors          = { 'Marc Hervera' => 'mhergon@gmail.com' }
-  spec.summary          = 'Subtitles made easy'
-  spec.source           = { :git => 'https://github.com/mhergon/MPMoviePlayerController-Subtitles.git', :tag => 'v2.0.2' }
+  spec.summary          = 'Realm GeoQueries made easy'
+  spec.source           = { :git => 'https://github.com/mhergon/RealmGeoQueries.git', :tag => 'v1.0' }
   spec.source_files     = 'Subtitles.swift'
   spec.requires_arc     = true
   spec.module_name       = 'MPMoviePlayerControllerSubtitles'

@@ -15,16 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        // Override point for customization after application launch.
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
         
         
         let boxView = BoxViewController(nibName: "BoxViewController", bundle: nil)
+        boxView.tabBarItem = UITabBarItem(title: "Box query", image: UIImage(named: "box"), tag: 0)
+        let radiusView = RadiusViewController(nibName: "RadiusViewController", bundle: nil)
+        radiusView.tabBarItem = UITabBarItem(title: "Radius query", image: UIImage(named: "radius"), tag: 0)
         
         let tabBar = UITabBarController()
-        tabBar.viewControllers = [boxView]
+        tabBar.viewControllers = [boxView, radiusView]
         self.window?.rootViewController = tabBar
         
         return true
