@@ -36,13 +36,27 @@ First, import module
 ```swift
 import GeoQueries
 ```
-
+<br>
 Search with MapView MKCoordinateRegion
 ```swift
 let results = try! Realm().findInRegion(YourModelClass.self, region: mapView.region)
 ```
-
+<br>
 Search around the center
 ```swift
-let results = try! Realm().findNearby(Point.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
+let results = try! Realm().findNearby(YourModelClass.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
 ```
+
+## Contact
+
+- [Linkedin][2]
+- [Twitter][3] (@mhergon)
+
+[2]: https://es.linkedin.com/in/marchervera
+[3]: http://twitter.com/mhergon "Marc Hervera"
+
+## License
+
+Licensed under Apache License v2.0.
+<br>
+Copyright 2015 Marc Hervera.
