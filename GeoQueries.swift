@@ -1,5 +1,5 @@
 //
-//  RealmGeoQuery.swift
+//  GeoQueries.swift
 //  GeoQueries
 //
 //  Created by mhergon on 30/11/15.
