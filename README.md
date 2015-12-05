@@ -32,27 +32,27 @@ pod "RealmGeoQueries"
 
 ### Usage
 
-First, import module
+First, import module;
 ```swift
 import GeoQueries
 ```
 <br>
 
-Search with MapView MKCoordinateRegion
+Search with MapView MKCoordinateRegion;
 ```swift
 let results = try! Realm()
     .findInRegion(YourModelClass.self, region: mapView.region)
 ```
 <br>
 
-Search around the center with radius in meters
+Search around the center with radius in meters;
 ```swift
 let results = try! Realm()
     .findNearby(YourModelClass.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
 ```
 <br>
 
-Filter Realm results
+Filter Realm results;
 ```swift
 let results = try! Realm()
     .objects(Point.self)
