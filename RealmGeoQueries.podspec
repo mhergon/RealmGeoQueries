@@ -11,5 +11,5 @@ Pod::Spec.new do |spec|
   spec.ios.frameworks   = 'CoreLocation', 'MapKit'
   spec.dependency       'RealmSwift'
   spec.requires_arc     = true
-  spec.module_name      = 'RealmGeoQueries'
+  spec.module_name      = 'GeoQueries'
 end
