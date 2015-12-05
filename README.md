@@ -61,6 +61,7 @@ let results = try! Realm()
 ```
 <br>
 
+See GeoQueries.swift for more options.
 
 ## Contact
 
