@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,12 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
+
+        // DB
+        initialSetup()
         
-        
+        // Views
         let boxView = BoxViewController(nibName: "BoxViewController", bundle: nil)
         boxView.tabBarItem = UITabBarItem(title: "Box query", image: UIImage(named: "box"), tag: 0)
         let radiusView = RadiusViewController(nibName: "RadiusViewController", bundle: nil)
@@ -55,6 +59,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //MARK:- Methods
+    func initialSetup() {
 
+        
+        let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString
+        let filePath = path.stringByAppendingPathComponent("default.realm")
+        
+        let fileManager = NSFileManager.defaultManager()
+        guard !fileManager.fileExistsAtPath(filePath) else {
+            return
+        }
+        
+        if let db = NSBundle.mainBundle().pathForResource("RealmGeoQueriesPoints", ofType: "realm") {
+            try! fileManager.copyItemAtPath(db, toPath: filePath)
+        }
+        
+    }
+    
 }
 

@@ -15,9 +15,14 @@
 		4B70295C1C13310500115E53 /* RadiusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B70295A1C13310500115E53 /* RadiusViewController.swift */; };
 		4B70295D1C13310500115E53 /* RadiusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B70295B1C13310500115E53 /* RadiusViewController.xib */; };
 		4B7029611C13316F00115E53 /* RealmGeoQueriesPoints.realm in Resources */ = {isa = PBXBuildFile; fileRef = 4B7029601C13316F00115E53 /* RealmGeoQueriesPoints.realm */; };
+		4B7029641C1333FC00115E53 /* RealmGeoQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7029631C1333FC00115E53 /* RealmGeoQueries.swift */; };
+		4B7029671C13379500115E53 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7029661C13379500115E53 /* Point.swift */; };
+		4B7029691C1337F200115E53 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7029681C1337F200115E53 /* Annotation.swift */; };
+		EF9A74ED75B613B943776813 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC20D4234AB2D5745FCF5C8A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		444DA62A29853CFD97FB3B26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4B7029461C13301D00115E53 /* RealmGeoQueries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmGeoQueries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B7029491C13301D00115E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B70294B1C13301D00115E53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,6 +33,11 @@
 		4B70295A1C13310500115E53 /* RadiusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiusViewController.swift; sourceTree = "<group>"; };
 		4B70295B1C13310500115E53 /* RadiusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadiusViewController.xib; sourceTree = "<group>"; };
 		4B7029601C13316F00115E53 /* RealmGeoQueriesPoints.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = RealmGeoQueriesPoints.realm; sourceTree = "<group>"; };
+		4B7029631C1333FC00115E53 /* RealmGeoQueries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmGeoQueries.swift; path = ../../RealmGeoQueries.swift; sourceTree = "<group>"; };
+		4B7029661C13379500115E53 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		4B7029681C1337F200115E53 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		CFD5680F90C4D17E17BBD6D1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FC20D4234AB2D5745FCF5C8A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +45,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9A74ED75B613B943776813 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38501C2F5C7A836786FA290B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC20D4234AB2D5745FCF5C8A /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4B70293D1C13301D00115E53 = {
 			isa = PBXGroup;
 			children = (
 				4B7029481C13301D00115E53 /* RealmGeoQueries */,
 				4B7029471C13301D00115E53 /* Products */,
+				E8F7ED0D4ED3B8CE271045A7 /* Pods */,
+				38501C2F5C7A836786FA290B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,7 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				4B7029491C13301D00115E53 /* AppDelegate.swift */,
+				4B7029621C1333D900115E53 /* RealmGeoQueries */,
 				4B70295F1C13314900115E53 /* Resources */,
+				4B7029651C13377000115E53 /* Model */,
 				4B70295E1C13314000115E53 /* Controllers */,
 				4B7029501C13301D00115E53 /* Info.plist */,
 				4B70294D1C13301D00115E53 /* LaunchScreen.storyboard */,
@@ -89,6 +112,32 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		4B7029621C1333D900115E53 /* RealmGeoQueries */ = {
+			isa = PBXGroup;
+			children = (
+				4B7029631C1333FC00115E53 /* RealmGeoQueries.swift */,
+			);
+			name = RealmGeoQueries;
+			sourceTree = "<group>";
+		};
+		4B7029651C13377000115E53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B7029661C13379500115E53 /* Point.swift */,
+				4B7029681C1337F200115E53 /* Annotation.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E8F7ED0D4ED3B8CE271045A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				444DA62A29853CFD97FB3B26 /* Pods.debug.xcconfig */,
+				CFD5680F90C4D17E17BBD6D1 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -96,9 +145,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B7029531C13301D00115E53 /* Build configuration list for PBXNativeTarget "RealmGeoQueries" */;
 			buildPhases = (
+				449FC17D2077C4C6D888D7DD /* Check Pods Manifest.lock */,
 				4B7029421C13301D00115E53 /* Sources */,
 				4B7029431C13301D00115E53 /* Frameworks */,
 				4B7029441C13301D00115E53 /* Resources */,
+				141EFE83ED36A942D1B243C5 /* Embed Pods Frameworks */,
+				FC670D631716BD051EE327F8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -157,13 +209,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		141EFE83ED36A942D1B243C5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		449FC17D2077C4C6D888D7DD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FC670D631716BD051EE327F8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4B7029421C13301D00115E53 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4B7029581C13308B00115E53 /* BoxViewController.swift in Sources */,
+				4B7029671C13379500115E53 /* Point.swift in Sources */,
 				4B70295C1C13310500115E53 /* RadiusViewController.swift in Sources */,
+				4B7029641C1333FC00115E53 /* RealmGeoQueries.swift in Sources */,
+				4B7029691C1337F200115E53 /* Annotation.swift in Sources */,
 				4B70294A1C13301D00115E53 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +368,7 @@
 		};
 		4B7029541C13301D00115E53 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 444DA62A29853CFD97FB3B26 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RealmGeoQueries/Info.plist;
@@ -276,6 +380,7 @@
 		};
 		4B7029551C13301D00115E53 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFD5680F90C4D17E17BBD6D1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RealmGeoQueries/Info.plist;
