@@ -10,7 +10,7 @@ import RealmSwift
 import CoreLocation
 import MapKit
 
-extension Realm {
+public extension Realm {
     
     /**
      Find objects inside MKCoordinateRegion. Useful for use in conjunction with MapKit
@@ -75,7 +75,7 @@ extension Realm {
 
 }
 
-extension Results {
+public extension Results {
     
     /**
      Filter results from Realm query using MKCoordinateRegion
@@ -185,7 +185,7 @@ public struct GeoBox {
     
 }
 
-extension CLLocationCoordinate2D {
+public extension CLLocationCoordinate2D {
 
     /**
      Accessory function to convert CLLocationCoordinate2D to GeoBox
@@ -211,7 +211,7 @@ extension CLLocationCoordinate2D {
    
 }
 
-extension MKCoordinateRegion {
+public extension MKCoordinateRegion {
     
     // Accessory function to convert MKCoordinateRegion to GeoBox
     var geoBox: GeoBox {
