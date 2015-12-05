@@ -36,10 +36,10 @@ First, import module;
 ```swift
 import GeoQueries
 ```
-<br>
 
 Model must have a latitude and longitude keys, that have to be named "lat" and "lng" respectively. You can use another property names (use "latitudeKey" and "longitudeKey" parameters).
 
+<br>
 Search with MapView MKCoordinateRegion;
 ```swift
 let results = try! Realm()
