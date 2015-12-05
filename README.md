@@ -1,5 +1,5 @@
 <p align="center" >
-<img src="https://raw.github.com/mhergon/MPMoviePlayerController-Subtitles/master/assets/logo.png" alt="AFNetworking" title="Logo" width=250>
+<img src="https://raw.github.com/mhergon/RealmGeoQueries/assets/logo.png" alt="RealmGeoQueries" title="Logo" width=250>
 </p>
 
 ![issues](https://img.shields.io/github/issues/mhergon/MPMoviePlayerController-Subtitles.svg)
