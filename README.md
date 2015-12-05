@@ -37,15 +37,30 @@ First, import module
 import GeoQueries
 ```
 <br>
+
 Search with MapView MKCoordinateRegion
 ```swift
-let results = try! Realm().findInRegion(YourModelClass.self, region: mapView.region)
+let results = try! Realm()
+    .findInRegion(YourModelClass.self, region: mapView.region)
 ```
 <br>
-Search around the center
+
+Search around the center with radius in meters
 ```swift
-let results = try! Realm().findNearby(YourModelClass.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
+let results = try! Realm()
+    .findNearby(YourModelClass.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
 ```
+<br>
+
+Filter Realm results
+```swift
+let results = try! Realm()
+    .objects(Point.self)
+    .filter("type", "restaurant")
+    .filterGeoRadius(mapView.centerCoordinate, radius: 500, sortAscending: nil)
+```
+<br>
+
 
 ## Contact
 
