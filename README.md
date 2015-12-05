@@ -55,7 +55,7 @@ let results = try! Realm()
 Filter Realm results;
 ```swift
 let results = try! Realm()
-    .objects(Point.self)
+    .objects(YourModelClass.self)
     .filter("type", "restaurant")
     .filterGeoRadius(mapView.centerCoordinate, radius: 500, sortAscending: nil)
 ```
