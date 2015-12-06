@@ -54,7 +54,7 @@ let results = try! Realm()
 ```
 <br>
 
-Filter Realm results with radius;
+Filter Realm results with radius in meters;
 ```swift
 let results = try! Realm()
     .objects(YourModelClass.self)
