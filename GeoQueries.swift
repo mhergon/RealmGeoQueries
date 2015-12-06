@@ -88,7 +88,6 @@ public extension Results {
      */
     func filterGeoRegion(region: MKCoordinateRegion, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<T> {
         
-        // GeoBox
         let box = region.geoBox
         
         let topLeftPredicate = NSPredicate(format: "%K <= %f AND %K >= %f", latitudeKey, box.topLeft.latitude, longitudeKey, box.topLeft.longitude)
@@ -178,9 +177,9 @@ public struct GeoBox {
     var topLeft: CLLocationCoordinate2D
     var bottomRight: CLLocationCoordinate2D
     
-    init(topLeft tl: CLLocationCoordinate2D, bottomRight br: CLLocationCoordinate2D) {
-        topLeft = tl
-        bottomRight = br
+    init(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
+        self.topLeft = topLeft
+        self.bottomRight = bottomRight
     }
     
 }
@@ -196,16 +195,7 @@ public extension CLLocationCoordinate2D {
      */
     func geoBox(radius: Double) -> GeoBox {
         
-        // Get bounding box
-        let top = self.offSet(radius, bearing: 0.0) // North
-        let right = self.offSet(radius, bearing: 90.0) // East
-        let bottom = self.offSet(radius, bearing: 180.0) // South
-        let left = self.offSet(radius, bearing: 270.0) // West
-        
-        return GeoBox(
-            topLeft: CLLocationCoordinate2D(latitude: top.latitude, longitude: left.longitude),
-            bottomRight: CLLocationCoordinate2D(latitude: bottom.latitude, longitude: right.longitude)
-        )
+        return MKCoordinateRegionMakeWithDistance(self, radius * 2.0, radius * 2.0).geoBox
         
     }
    
@@ -216,10 +206,10 @@ public extension MKCoordinateRegion {
     // Accessory function to convert MKCoordinateRegion to GeoBox
     var geoBox: GeoBox {
         
-        let maxLat = self.center.latitude + self.span.latitudeDelta / 2.0
-        let minLat = self.center.latitude - self.span.latitudeDelta / 2.0
-        let maxLng = self.center.longitude + self.span.longitudeDelta / 2.0
-        let minLng = self.center.longitude - self.span.longitudeDelta / 2.0
+        let maxLat = self.center.latitude + (self.span.latitudeDelta / 2.0)
+        let minLat = self.center.latitude - (self.span.latitudeDelta / 2.0)
+        let maxLng = self.center.longitude + (self.span.longitudeDelta / 2.0)
+        let minLng = self.center.longitude - (self.span.longitudeDelta / 2.0)
 
         return GeoBox(
             topLeft: CLLocationCoordinate2D(latitude: maxLat, longitude: minLng),
@@ -231,69 +221,6 @@ public extension MKCoordinateRegion {
 }
 
 //MARK: Private core extensions
-private extension Double {
-
-    // Auxiliars
-    var radians: Double { return self * (M_PI / 180.0) } // Degrees to radians
-    var degrees: Double { return self * (180.0 / M_PI) } // Radians to degrees
-    var round10: Double { return round(10000000000 * self) / 10000000000 } // Round to 10 decimals
-    
-}
-
-private extension CLLocationCoordinate2D {
-    
-    /**
-     Offset coordinate with distance and bearing
-     
-     - parameter distance: Distance in meters
-     - parameter bearing:  Bearing in degrees
-     
-     - returns: Coordinate with offset applied
-     */
-    func offSet(distance: Double, bearing: Double) -> CLLocationCoordinate2D {
-        
-        // Values
-        let earthRadius: Double = 6371000.0
-        
-        // Compute
-        let destinationLat = asin(
-            sin(self.latitude.radians)
-                * cos(distance / earthRadius)
-                + cos(self.latitude.radians)
-                * sin(distance / earthRadius)
-                * cos(bearing.radians)
-        )
-        
-        let aux = (
-            sin(bearing.radians)
-                * sin(distance / earthRadius)
-                * cos(self.latitude.radians),
-            cos(distance / earthRadius)
-                - sin(self.latitude.radians)
-                * sin(destinationLat)
-        )
-        var destinationLng = (
-            self.longitude.radians
-                + atan2(aux.0, aux.1)
-        )
-        
-        // Corrections
-        if destinationLng < -M_PI {
-            
-            destinationLng += M_PI * 2.0
-            
-        } else if destinationLng >= M_PI {
-            
-            destinationLng -= M_PI * 2.0
-            
-        }
-        
-        return CLLocationCoordinate2D(latitude: destinationLat.degrees.round10, longitude: destinationLng.degrees.round10)
-        
-    }
-    
-}
-
 private extension Array where Element:Object {
     
     /**
