@@ -54,7 +54,7 @@ let results = try! Realm()
 ```
 <br>
 
-Filter Realm results;
+Filter Realm results with radius;
 ```swift
 let results = try! Realm()
     .objects(YourModelClass.self)
@@ -63,7 +63,7 @@ let results = try! Realm()
 ```
 <br>
 
-See GeoQueries.swift for more options.
+See ```GeoQueries.swift``` for more options.
 
 ## Contact
 
