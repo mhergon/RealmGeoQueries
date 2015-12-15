@@ -30,7 +30,7 @@ public extension Realm {
             .filterGeoBox(region.geoBox, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
     }
-
+    
     /**
      Find objects inside GeoBox
      
@@ -49,7 +49,7 @@ public extension Realm {
             .filterGeoBox(box, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
     }
-
+    
     /**
      Find objects from center and distance radius
      
@@ -63,16 +63,16 @@ public extension Realm {
      
      - returns: Found objects inside radius around the center coordinate
      */
-    func findNearby<T: Object>(type: T.Type, origin center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng", distanceKey: String = "") -> [T] {
-
+    func findNearby<T: Object>(type: T.Type, origin center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng", distanceKey: String?) -> [T] {
+        
         // Query
         return self
             .objects(type)
             .filterGeoBox(center.geoBox(radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
             .filterGeoRadius(center, radius: radius, sortAscending: sort, latitudeKey: latitudeKey, longitudeKey: longitudeKey, distanceKey: distanceKey)
-
+        
     }
-
+    
 }
 
 public extension Results {
@@ -90,8 +90,8 @@ public extension Results {
         
         let box = region.geoBox
         
-        let topLeftPredicate = NSPredicate(format: "\(latitudeKey) <= %f AND \(longitudeKey) >= %f", box.topLeft.latitude, box.topLeft.longitude)
-        let bottomRightPredicate = NSPredicate(format: "\(latitudeKey) >= %f AND \(longitudeKey) <= %f", box.bottomRight.latitude, box.bottomRight.longitude)
+        let topLeftPredicate = NSPredicate(format: "%K <= %f AND %K >= %f", latitudeKey, box.topLeft.latitude, longitudeKey, box.topLeft.longitude)
+        let bottomRightPredicate = NSPredicate(format: "%K >= %f AND %K <= %f", latitudeKey, box.bottomRight.latitude, longitudeKey, box.bottomRight.longitude)
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [topLeftPredicate, bottomRightPredicate])
         
         return self.filter(compoundPredicate)
@@ -109,8 +109,8 @@ public extension Results {
      */
     func filterGeoBox(box: GeoBox, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<T> {
         
-        let topLeftPredicate = NSPredicate(format: "\(latitudeKey) <= %f AND \(longitudeKey) >= %f", box.topLeft.latitude, box.topLeft.longitude)
-        let bottomRightPredicate = NSPredicate(format: "\(latitudeKey) >= %f AND \(longitudeKey) <= %f", box.bottomRight.latitude, box.bottomRight.longitude)
+        let topLeftPredicate = NSPredicate(format: "%K <= %f AND %K >= %f", latitudeKey, box.topLeft.latitude, longitudeKey, box.topLeft.longitude)
+        let bottomRightPredicate = NSPredicate(format: "%K >= %f AND %K <= %f", latitudeKey, box.bottomRight.latitude, longitudeKey, box.bottomRight.longitude)
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [topLeftPredicate, bottomRightPredicate])
         
         return self.filter(compoundPredicate)
@@ -129,7 +129,7 @@ public extension Results {
      
      - returns: Found objects inside radius around the center coordinate
      */
-    func filterGeoRadius(center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng", distanceKey: String = "") -> [T] {
+    func filterGeoRadius(center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng", distanceKey: String?) -> [T] {
         
         // Get box
         let inBox = self.filterGeoBox(center.geoBox(radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
@@ -138,16 +138,16 @@ public extension Results {
         let results = inBox.filter { (obj: Object) -> Bool in
             
             // Calculate distance
-            let location = CLLocation(latitude: obj.valueForKey(latitudeKey) as! CLLocationDegrees, longitude: obj.valueForKey(longitudeKey) as! CLLocationDegrees)
+            let location = CLLocation(latitude: obj.valueForKeyPath(latitudeKey) as! CLLocationDegrees, longitude: obj.valueForKeyPath(longitudeKey) as! CLLocationDegrees)
             let center = CLLocation(latitude: center.latitude, longitude: center.longitude)
             obj.objDist = location.distanceFromLocation(center)
             
             // Save distance if property exists
-            if distanceKey != "" {
+            if let distKey = distanceKey {
                 
-                if let _ = obj.valueForKey(distanceKey) {
+                if let _ = obj.valueForKeyPath(distKey) {
                     
-                    obj.setValue(obj.objDist, forKey: distanceKey)
+                    obj.setValue(obj.objDist, forKeyPath: distKey)
                     
                 }
                 
@@ -165,7 +165,7 @@ public extension Results {
         return results.sortByDistance(sort)
         
     }
-
+    
 }
 
 //MARK:- Public core extensions
@@ -185,7 +185,7 @@ public struct GeoBox {
 }
 
 public extension CLLocationCoordinate2D {
-
+    
     /**
      Accessory function to convert CLLocationCoordinate2D to GeoBox
      
@@ -198,7 +198,7 @@ public extension CLLocationCoordinate2D {
         return MKCoordinateRegionMakeWithDistance(self, radius * 2.0, radius * 2.0).geoBox
         
     }
-   
+    
 }
 
 public extension MKCoordinateRegion {
@@ -210,7 +210,7 @@ public extension MKCoordinateRegion {
         let minLat = self.center.latitude - (self.span.latitudeDelta / 2.0)
         let maxLng = self.center.longitude + (self.span.longitudeDelta / 2.0)
         let minLng = self.center.longitude - (self.span.longitudeDelta / 2.0)
-
+        
         return GeoBox(
             topLeft: CLLocationCoordinate2D(latitude: maxLat, longitude: minLng),
             bottomRight: CLLocationCoordinate2D(latitude: minLat, longitude: maxLng)
