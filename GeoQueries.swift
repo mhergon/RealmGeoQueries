@@ -90,8 +90,8 @@ public extension Results {
         
         let box = region.geoBox
         
-        let topLeftPredicate = NSPredicate(format: "%K <= %f AND %K >= %f", latitudeKey, box.topLeft.latitude, longitudeKey, box.topLeft.longitude)
-        let bottomRightPredicate = NSPredicate(format: "%K >= %f AND %K <= %f", latitudeKey, box.bottomRight.latitude, longitudeKey, box.bottomRight.longitude)
+        let topLeftPredicate = NSPredicate(format: "\(latitudeKey) <= %f AND \(longitudeKey) >= %f", box.topLeft.latitude, box.topLeft.longitude)
+        let bottomRightPredicate = NSPredicate(format: "\(latitudeKey) >= %f AND \(longitudeKey) <= %f", box.bottomRight.latitude, box.bottomRight.longitude)
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [topLeftPredicate, bottomRightPredicate])
         
         return self.filter(compoundPredicate)
@@ -109,8 +109,8 @@ public extension Results {
      */
     func filterGeoBox(box: GeoBox, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<T> {
         
-        let topLeftPredicate = NSPredicate(format: "%K <= %f AND %K >= %f", latitudeKey, box.topLeft.latitude, longitudeKey, box.topLeft.longitude)
-        let bottomRightPredicate = NSPredicate(format: "%K >= %f AND %K <= %f", latitudeKey, box.bottomRight.latitude, longitudeKey, box.bottomRight.longitude)
+        let topLeftPredicate = NSPredicate(format: "\(latitudeKey) <= %f AND \(longitudeKey) >= %f", box.topLeft.latitude, box.topLeft.longitude)
+        let bottomRightPredicate = NSPredicate(format: "\(latitudeKey) >= %f AND \(longitudeKey) <= %f", box.bottomRight.latitude, box.bottomRight.longitude)
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [topLeftPredicate, bottomRightPredicate])
         
         return self.filter(compoundPredicate)
