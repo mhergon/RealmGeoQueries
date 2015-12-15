@@ -37,7 +37,7 @@ class RadiusViewController: UIViewController {
         
         // Get results
         let radius = 450000.0 // 500 km
-        results = try! Realm().findNearby(Point.self, origin: mapView.centerCoordinate, radius: radius, sortAscending: nil)
+        results = try! Realm().findNearby(Point.self, origin: mapView.centerCoordinate, radius: radius, sortAscending: nil, distanceKey: nil)
         
         // Add to map
         guard let r = results else { return }
