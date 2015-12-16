@@ -64,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK:- Methods
     func initialSetup() {
 
-        
         let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString
         let filePath = path.stringByAppendingPathComponent("default.realm")
         
@@ -78,6 +77,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
     }
+    
+    // Only for testing
+    /*
+    func generateRandom() {
+        
+        func randInRange(range: Range<Int>) -> Int {
+            // arc4random_uniform(_: UInt32) returns UInt32, so it needs explicit type conversion to Int
+            // note that the random number is unsigned so we don't have to worry that the modulo
+            // operation can have a negative output
+            return  Int(arc4random_uniform(UInt32(range.endIndex - range.startIndex))) + range.startIndex
+        }
+        
+        try! Realm().write({ () -> Void in
+            
+            for _ in 1...50000 {
+                
+                let lat = Double(randInRange(-9000000...9000000)) / 100000.0
+                let lng = Double(randInRange(-18000000...18000000)) / 100000.0
+                let p = Point()
+                p.name = "\(lat), \(lng)"
+                p.lat = lat
+                p.lng = lng
+                try! Realm().add(p)
+                
+            }
+            
+        })
+        
+    } */
     
 }
 

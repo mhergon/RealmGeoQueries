@@ -10,6 +10,7 @@ import RealmSwift
 import CoreLocation
 import MapKit
 
+// MARK: - Public extensions
 public extension Realm {
     
     /**
@@ -39,7 +40,7 @@ public extension Realm {
      - parameter latitudeKey:  Set to use different latitude key in query (default: "lat")
      - parameter longitudeKey: Set to use different longitude key in query (default: "lng")
      
-     - returns: Found objects inside GEoBox
+     - returns: Found objects inside GeoBox
      */
     func findInBox<T: Object>(type: T.Type, box: GeoBox, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<T> {
         
@@ -59,17 +60,16 @@ public extension Realm {
      - parameter order:        Sort by distance (optional)
      - parameter latitudeKey:  Set to use different latitude key in query (default: "lat")
      - parameter longitudeKey: Set to use different longitude key in query (default: "lng")
-     - parameter distanceKey:  Set to fill distance property
      
      - returns: Found objects inside radius around the center coordinate
      */
-    func findNearby<T: Object>(type: T.Type, origin center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng", distanceKey: String?) -> [T] {
+    func findNearby<T: Object>(type: T.Type, origin center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [T] {
         
         // Query
         return self
             .objects(type)
             .filterGeoBox(center.geoBox(radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
-            .filterGeoRadius(center, radius: radius, sortAscending: sort, latitudeKey: latitudeKey, longitudeKey: longitudeKey, distanceKey: distanceKey)
+            .filterGeoRadius(center, radius: radius, sortAscending: sort, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
     }
     
@@ -122,53 +122,47 @@ public extension Results {
      
      - parameter center:       Center coordinate
      - parameter radius:       Radius in meters
-     - parameter sort:         Sort by distance (optional)
+     - parameter sort:         Sort by distance (optionl)
      - parameter latitudeKey:  Set to use different latitude key in query (default: "lat")
      - parameter longitudeKey: Set to use different longitude key in query (default: "lng")
-     - parameter distanceKey:  Set to fill distance property
      
      - returns: Found objects inside radius around the center coordinate
      */
-    func filterGeoRadius(center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng", distanceKey: String?) -> [T] {
+    func filterGeoRadius(center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [T] {
         
         // Get box
         let inBox = self.filterGeoBox(center.geoBox(radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
-        // Query & filter
-        let results = inBox.filter { (obj: Object) -> Bool in
-            
-            // Calculate distance
-            let location = CLLocation(latitude: obj.valueForKeyPath(latitudeKey) as! CLLocationDegrees, longitude: obj.valueForKeyPath(longitudeKey) as! CLLocationDegrees)
-            let center = CLLocation(latitude: center.latitude, longitude: center.longitude)
-            obj.objDist = location.distanceFromLocation(center)
-            
-            // Save distance if property exists
-            if let distKey = distanceKey {
-                
-                if let _ = obj.valueForKeyPath(distKey) {
-                    
-                    obj.setValue(obj.objDist, forKeyPath: distKey)
-                    
-                }
-                
-            }
+        // add distance
+        let distance = inBox.addDistance(center, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+        
+        // Inside radius
+        let radius = distance.filter { (obj: Object) -> Bool in
             
             return obj.objDist <= radius
             
         }
         
         // Sort results
-        guard let sort = sort else {
-            return results
+        guard let s = sort else {
+            return radius
         }
         
-        return results.sortByDistance(sort)
+        return radius.sort(s)
+        
+    }
+    
+    func sortByDistance(center: CLLocationCoordinate2D, ascending: Bool, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [T] {
+        
+        return self
+            .addDistance(center, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+            .sort(ascending)
         
     }
     
 }
 
-//MARK:- Public core extensions
+// MARK: - Public core extensions
 /**
 *  GeoBox struct. Set top-left and bottom-right coordinate to create a box
 */
@@ -220,7 +214,38 @@ public extension MKCoordinateRegion {
     
 }
 
-//MARK: Private core extensions
+// MARK: - Private core extensions
+private extension Results {
+    
+    /**
+     Add distance to sort results
+     
+     - parameter center:       Center coordinate
+     - parameter latitudeKey:  Set to use different latitude key in query (default: "lat")
+     - parameter longitudeKey: Set to use different longitude key in query (default: "lng")
+     
+     - returns: Array of results sorted
+     */
+    func addDistance(center: CLLocationCoordinate2D, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [T] {
+        
+        return self.map { (obj) -> T in
+            
+            // Calculate distance
+            let location = CLLocation(latitude: obj.valueForKeyPath(latitudeKey) as! CLLocationDegrees, longitude: obj.valueForKeyPath(longitudeKey) as! CLLocationDegrees)
+            let center = CLLocation(latitude: center.latitude, longitude: center.longitude)
+            let distance = location.distanceFromLocation(center)
+
+            // Save
+            obj.objDist = distance
+
+            return obj
+            
+        }
+        
+    }
+    
+}
+
 private extension Array where Element:Object {
     
     /**
@@ -230,7 +255,7 @@ private extension Array where Element:Object {
      
      - returns: Array of [Object] sorted by distance
      */
-    func sortByDistance(ascending: Bool = true) -> [Generator.Element] {
+    func sort(ascending: Bool = true) -> [Generator.Element] {
         
         return self.sort({ (a: Object, b: Object) -> Bool in
             
