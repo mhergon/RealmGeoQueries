@@ -8,8 +8,8 @@
 &emsp;
 ![license](https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg)
 
-RealmGeoQueries simplify spatial queries with [Realm.io][1]. In the absence of and official functions, this library provide the possibility to do proximity search.
-It's not necessary to include Geohash or other type of index in the model class and only needs latitude and longitude properties.
+RealmGeoQueries simplifies spatial queries with [Realm Cocoa][1]. In the absence of and official functions, this library provide the possibility to do proximity search.
+It's not necessary to include Geohash or other types of indexes in the model class as it only needs latitude and longitude properties.
 
 ## How To Get Started
 
