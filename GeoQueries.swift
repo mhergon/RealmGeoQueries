@@ -2,8 +2,8 @@
 //  GeoQueries.swift
 //  GeoQueries
 //
-//  Created by mhergon on 30/11/15.
-//  Copyright © 2015 mhergon. All rights reserved.
+//  Created by mhergon on 15/10/16.
+//  Copyright © 2016 mhergon. All rights reserved.
 //
 
 import RealmSwift
@@ -28,7 +28,7 @@ public extension Realm {
         // Query
         return self
             .objects(type)
-            .filterGeoBox(region.geoBox, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+            .filterGeoBox(box: region.geoBox, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
     }
     
@@ -47,7 +47,7 @@ public extension Realm {
         // Query
         return self
             .objects(type)
-            .filterGeoBox(box, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+            .filterGeoBox(box: box, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
     }
     
@@ -68,8 +68,8 @@ public extension Realm {
         // Query
         return self
             .objects(type)
-            .filterGeoBox(center.geoBox(radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
-            .filterGeoRadius(center, radius: radius, sortAscending: sort, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+            .filterGeoBox(box: center.geoBox(radius: radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+            .filterGeoRadius(center: center, radius: radius, sortAscending: sort, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
     }
     
@@ -131,10 +131,10 @@ public extension Results {
     func filterGeoRadius(center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [T] {
         
         // Get box
-        let inBox = self.filterGeoBox(center.geoBox(radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+        let inBox = self.filterGeoBox(box: center.geoBox(radius: radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
         // add distance
-        let distance = inBox.addDistance(center, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+        let distance = inBox.addDistance(center: center, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
         // Inside radius
         let radius = distance.filter { (obj: Object) -> Bool in
@@ -148,15 +148,15 @@ public extension Results {
             return radius
         }
         
-        return radius.sort(s)
+        return radius.sort(ascending: s)
         
     }
     
     func sortByDistance(center: CLLocationCoordinate2D, ascending: Bool, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [T] {
         
         return self
-            .addDistance(center, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
-            .sort(ascending)
+            .addDistance(center: center, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+            .sort(ascending: ascending)
         
     }
     
@@ -164,8 +164,8 @@ public extension Results {
 
 // MARK: - Public core extensions
 /**
-*  GeoBox struct. Set top-left and bottom-right coordinate to create a box
-*/
+ *  GeoBox struct. Set top-left and bottom-right coordinate to create a box
+ */
 public struct GeoBox {
     
     var topLeft: CLLocationCoordinate2D
@@ -231,13 +231,13 @@ private extension Results {
         return self.map { (obj) -> T in
             
             // Calculate distance
-            let location = CLLocation(latitude: obj.valueForKeyPath(latitudeKey) as! CLLocationDegrees, longitude: obj.valueForKeyPath(longitudeKey) as! CLLocationDegrees)
+            let location = CLLocation(latitude: obj.value(forKeyPath: latitudeKey) as! CLLocationDegrees, longitude: obj.value(forKeyPath: longitudeKey) as! CLLocationDegrees)
             let center = CLLocation(latitude: center.latitude, longitude: center.longitude)
-            let distance = location.distanceFromLocation(center)
-
+            let distance = location.distance(from: center)
+            
             // Save
             obj.objDist = distance
-
+            
             return obj
             
         }
@@ -255,9 +255,9 @@ private extension Array where Element:Object {
      
      - returns: Array of [Object] sorted by distance
      */
-    func sort(ascending: Bool = true) -> [Generator.Element] {
+    func sort(ascending: Bool = true) -> [Iterator.Element] {
         
-        return self.sort({ (a: Object, b: Object) -> Bool in
+        return self.sorted(by: { (a: Object, b: Object) -> Bool in
             
             if ascending {
                 
@@ -281,7 +281,7 @@ private extension Object {
         static var DistanceKey = "DistanceKey"
     }
     
-    private var objDist: Double {
+    var objDist: Double {
         get {
             guard let value = objc_getAssociatedObject(self, &AssociatedKeys.DistanceKey) as? Double else { return 0.0 }
             return value

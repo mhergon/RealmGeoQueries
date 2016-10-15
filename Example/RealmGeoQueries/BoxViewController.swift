@@ -35,7 +35,7 @@ class BoxViewController: UIViewController, MKMapViewDelegate {
     func reloadData() {
         
         // Get results
-        results = try! Realm().findInRegion(Point.self, region: mapView.region)
+        results = try! Realm().findInRegion(type: Point.self, region: mapView.region)
         
         // Add to map
         guard let r = results else { return }
@@ -59,13 +59,13 @@ class BoxViewController: UIViewController, MKMapViewDelegate {
     }
     
     //MARK:- MKMapViewDelegate
-    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         reloadData()
         
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         // User location
         if annotation is MKUserLocation {
@@ -77,7 +77,7 @@ class BoxViewController: UIViewController, MKMapViewDelegate {
         }
         
         // Marinas
-        var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(AnnotationIdentifier)
+        var pin = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier)
         if pin == nil {
             pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: AnnotationIdentifier)
             pin?.canShowCallout = true

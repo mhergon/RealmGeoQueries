@@ -37,7 +37,7 @@ class RadiusViewController: UIViewController {
         
         // Get results
         let radius = 450000.0 // 450 km
-        results = try! Realm().findNearby(Point.self, origin: mapView.centerCoordinate, radius: radius, sortAscending: true)
+        results = try! Realm().findNearby(type: Point.self, origin: mapView.centerCoordinate, radius: radius, sortAscending: true)
         
         // Add to map
         guard let r = results else { return }
@@ -60,8 +60,8 @@ class RadiusViewController: UIViewController {
         
         // Add circle
         mapView.removeOverlays(mapView.overlays)
-        let circle = MKCircle(centerCoordinate: mapView.centerCoordinate, radius: radius)
-        mapView.addOverlay(circle)
+        let circle = MKCircle(center: mapView.centerCoordinate, radius: radius)
+        mapView.add(circle)
         
     }
     
@@ -84,7 +84,7 @@ class RadiusViewController: UIViewController {
         }
         
         // Marinas
-        var pin = mapView.dequeueReusableAnnotationViewWithIdentifier(AnnotationIdentifier)
+        var pin = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationIdentifier)
         if pin == nil {
             pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: AnnotationIdentifier)
             pin?.canShowCallout = true
@@ -99,7 +99,7 @@ class RadiusViewController: UIViewController {
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         let circle = MKCircleRenderer(overlay: overlay)
-        circle.strokeColor = UIColor.redColor()
+        circle.strokeColor = UIColor.red
         circle.fillColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.1)
         circle.lineWidth = 1
         return circle

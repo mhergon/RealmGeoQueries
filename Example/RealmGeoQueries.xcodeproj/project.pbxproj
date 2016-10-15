@@ -18,10 +18,10 @@
 		4B7029671C13379500115E53 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7029661C13379500115E53 /* Point.swift */; };
 		4B7029691C1337F200115E53 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7029681C1337F200115E53 /* Annotation.swift */; };
 		4B7C8F4D1C21810700985975 /* RealmGeoQueriesPoints.realm in Resources */ = {isa = PBXBuildFile; fileRef = 4B7C8F4C1C21810700985975 /* RealmGeoQueriesPoints.realm */; };
-		EF9A74ED75B613B943776813 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC20D4234AB2D5745FCF5C8A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4316F7FD2FEAC49BD742546E /* Pods_RealmGeoQueries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmGeoQueries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		444DA62A29853CFD97FB3B26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4B1B6F131C13461900D99D11 /* GeoQueries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeoQueries.swift; path = ../../GeoQueries.swift; sourceTree = "<group>"; };
 		4B7029461C13301D00115E53 /* RealmGeoQueries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmGeoQueries.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,7 +36,9 @@
 		4B7029661C13379500115E53 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		4B7029681C1337F200115E53 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		4B7C8F4C1C21810700985975 /* RealmGeoQueriesPoints.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = RealmGeoQueriesPoints.realm; sourceTree = "<group>"; };
+		8AEC1DF74BEB1F745468A033 /* Pods-RealmGeoQueries.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmGeoQueries.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmGeoQueries/Pods-RealmGeoQueries.debug.xcconfig"; sourceTree = "<group>"; };
 		CFD5680F90C4D17E17BBD6D1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FC1AD17023046D1002C2697D /* Pods-RealmGeoQueries.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmGeoQueries.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmGeoQueries/Pods-RealmGeoQueries.release.xcconfig"; sourceTree = "<group>"; };
 		FC20D4234AB2D5745FCF5C8A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF9A74ED75B613B943776813 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				FC20D4234AB2D5745FCF5C8A /* Pods.framework */,
+				4316F7FD2FEAC49BD742546E /* Pods_RealmGeoQueries.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -134,6 +136,8 @@
 			children = (
 				444DA62A29853CFD97FB3B26 /* Pods.debug.xcconfig */,
 				CFD5680F90C4D17E17BBD6D1 /* Pods.release.xcconfig */,
+				8AEC1DF74BEB1F745468A033 /* Pods-RealmGeoQueries.debug.xcconfig */,
+				FC1AD17023046D1002C2697D /* Pods-RealmGeoQueries.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -145,12 +149,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B7029531C13301D00115E53 /* Build configuration list for PBXNativeTarget "RealmGeoQueries" */;
 			buildPhases = (
-				449FC17D2077C4C6D888D7DD /* Check Pods Manifest.lock */,
+				449FC17D2077C4C6D888D7DD /* [CP] Check Pods Manifest.lock */,
 				4B7029421C13301D00115E53 /* Sources */,
 				4B7029431C13301D00115E53 /* Frameworks */,
 				4B7029441C13301D00115E53 /* Resources */,
-				141EFE83ED36A942D1B243C5 /* Embed Pods Frameworks */,
-				FC670D631716BD051EE327F8 /* Copy Pods Resources */,
+				141EFE83ED36A942D1B243C5 /* [CP] Embed Pods Frameworks */,
+				FC670D631716BD051EE327F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,11 +172,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Marc Hervera";
 				TargetAttributes = {
 					4B7029451C13301D00115E53 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -210,49 +216,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		141EFE83ED36A942D1B243C5 /* Embed Pods Frameworks */ = {
+		141EFE83ED36A942D1B243C5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RealmGeoQueries/Pods-RealmGeoQueries-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		449FC17D2077C4C6D888D7DD /* Check Pods Manifest.lock */ = {
+		449FC17D2077C4C6D888D7DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FC670D631716BD051EE327F8 /* Copy Pods Resources */ = {
+		FC670D631716BD051EE327F8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RealmGeoQueries/Pods-RealmGeoQueries-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -298,8 +304,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -321,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -342,8 +350,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -359,34 +369,41 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		4B7029541C13301D00115E53 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 444DA62A29853CFD97FB3B26 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 8AEC1DF74BEB1F745468A033 /* Pods-RealmGeoQueries.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RealmGeoQueries/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.RealmGeoQueries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		4B7029551C13301D00115E53 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFD5680F90C4D17E17BBD6D1 /* Pods.release.xcconfig */;
+			baseConfigurationReference = FC1AD17023046D1002C2697D /* Pods-RealmGeoQueries.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RealmGeoQueries/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.RealmGeoQueries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
