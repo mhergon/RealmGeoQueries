@@ -16,7 +16,7 @@ It's not necessary to include Geohash or other types of indexes in the model cla
 ### Installation with CocoaPods
 
 ```ruby
-platform :ios, '8.0'
+platform :ios, '9.0'
 pod "RealmGeoQueries"
 ```
 
@@ -28,7 +28,8 @@ pod "RealmGeoQueries"
 
 | Version | Language  | Minimum iOS Target  |
 |:--------------------:|:---------------------------:|:---------------------------:|
-|          1.x         |            Swift            |            iOS 8            |
+|          1.2         |            Swift 3.0            |            iOS 9            |
+|          1.1         |            Swift 2.x            |            iOS 8            |
 
 ### Usage
 
@@ -43,14 +44,14 @@ Model must have a latitude and longitude keys, that have to be named "lat" and "
 Search with MapView MKCoordinateRegion;
 ```swift
 let results = try! Realm()
-    .findInRegion(YourModelClass.self, region: mapView.region)
+    .findInRegion(type: YourModelClass.self, region: mapView.region)
 ```
 <br>
 
 Search around the center with radius in meters;
 ```swift
 let results = try! Realm()
-    .findNearby(YourModelClass.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
+    .findNearby(YourModeltype: Class.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
 ```
 <br>
 
@@ -59,7 +60,7 @@ Filter Realm results with radius in meters;
 let results = try! Realm()
     .objects(YourModelClass.self)
     .filter("type", "restaurant")
-    .filterGeoRadius(mapView.centerCoordinate, radius: 500, sortAscending: nil)
+    .filterGeoRadius(center: mapView.centerCoordinate, radius: 500, sortAscending: nil)
 ```
 <br>
 
