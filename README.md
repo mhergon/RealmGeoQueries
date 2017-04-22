@@ -20,6 +20,21 @@ platform :ios, '9.0'
 pod "RealmGeoQueries"
 ```
 
+### Installation with Carthage
+
+Drag `GeoQueries.framework`, `RealmSwift.framework` and `Realm.framework` from Carthage/Build/ to the “Linked Frameworks and Libraries” section of your Xcode project’s “General” settings.
+
+Only on **iOS/tvOS/watchOS**: On your application targets "Build Phases" settings tab, click the "+" icon and choose "New Run Script Phase". Create a Run Script with the following contents:
+```ruby
+/usr/local/bin/carthage copy-frameworks
+```
+and add the paths to the frameworks you want to use under "Input Files", e.g.:
+```ruby
+$(SRCROOT)/Carthage/Build/iOS/GeoQueries.framework
+$(SRCROOT)/Carthage/Build/iOS/Realm.framework
+$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework
+```
+
 ### Manually installation
 
 [Download](https://github.com/mhergon/RealmGeoQueries/raw/master/GeoQueries.swift) (right-click) and add to your project.
