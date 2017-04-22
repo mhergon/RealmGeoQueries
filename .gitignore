@@ -1,26 +1,68 @@
-#################### OSX Finder
+#####
+# OS X temporary files that should never be committed
 .DS_Store
-
-#################### Xcode
-.DS_Store
-*/build/*
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
+*.swp
+*.lock
 profile
-*.moved-aside
-DerivedData
-.idea/
-*.hmap
-*.xccheckout
 
-#################### Cocoapods
-Podfile.lock
-Pods
-contents.xcworkspacedata
+####
+# Xcode temporary files that should never be committed
+*~.nib
+
+####
+# Xcode build files
+DerivedData/
+build/
+Builds/
+
+#####
+# Xcode private settings (window sizes, bookmarks, breakpoints, custom executables, smart groups)
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+
+####
+# Xcode 4
+xcuserdata
+!xcschemes
+# Xcode 4
+*.moved-aside
+
+####
+# XCode 4 workspaces - more detailed
+!xcshareddata
+!default.xcworkspace
+*.xcworkspacedata
+
+####
+# Xcode 5
+*.xccheckout
+*.xcuserstate
+
+####
+# Xcode 7
+*.xcscmblueprint
+
+####
+# AppCode
+.idea/
+
+####
+# Other Xcode files
+profile
+*.hmap
+*.ipa
+
+####
+# CocoaPods
+Pods/
+
+####
+# Carthage
+Carthage/Build
+Carthage/Checkouts
