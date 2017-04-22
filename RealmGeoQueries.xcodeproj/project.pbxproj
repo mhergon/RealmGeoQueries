@@ -381,7 +381,7 @@
 				);
 				INFOPLIST_FILE = GeoQueries/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.GeoQueries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -413,7 +413,7 @@
 				);
 				INFOPLIST_FILE = GeoQueries/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.GeoQueries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -557,6 +557,7 @@
 				4B4258831EAB633800350A8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B7029411C13301D00115E53 /* Build configuration list for PBXProject "RealmGeoQueries" */ = {
 			isa = XCConfigurationList;
