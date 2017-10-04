@@ -1,25 +1,23 @@
 //
-//  RadiusViewController.swift
+//  BoViewController.swift
 //  RealmGeoQueries
 //
-//  Created by mhergon on 5/12/15.
-//  Copyright © 2015 Marc Hervera. All rights reserved.
+//  Created by mhergon on 4/10/17.
+//  Copyright © 2017 mhergon. All rights reserved.
 //
 
 import UIKit
 import MapKit
 import RealmSwift
 
-private let AnnotationIdentifier = "AnnotationIdentifier"
+fileprivate let AnnotationIdentifier = "AnnotationIdentifier"
 
+class BoxViewController: UIViewController {
 
-class RadiusViewController: UIViewController {
-
-    //MARK:- Properties
+    // MARK: - Properties
     @IBOutlet weak var mapView: MKMapView!
     
-    var results: [Point]?
-    
+    fileprivate var results: Results<Point>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +25,11 @@ class RadiusViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //MARK:- Methods
     func reloadData() {
         
         // Get results
-        let radius = 450000.0 // 450 km
-        results = try! Realm().findNearby(type: Point.self, origin: mapView.centerCoordinate, radius: radius, sortAscending: true)
+        results = try! Realm().findInRegion(type: Point.self, region: mapView.region)
         
         // Add to map
         guard let r = results else { return }
@@ -58,21 +50,16 @@ class RadiusViewController: UIViewController {
         // Add new annotations
         self.mapView.addAnnotations(annotations)
         
-        // Add circle
-        mapView.removeOverlays(mapView.overlays)
-        let circle = MKCircle(center: mapView.centerCoordinate, radius: radius)
-        mapView.add(circle)
-        
     }
     
     //MARK:- MKMapViewDelegate
-    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         reloadData()
         
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         // User location
         if annotation is MKUserLocation {
@@ -96,14 +83,4 @@ class RadiusViewController: UIViewController {
         
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        let circle = MKCircleRenderer(overlay: overlay)
-        circle.strokeColor = UIColor.red
-        circle.fillColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.1)
-        circle.lineWidth = 1
-        return circle
-        
-    }
-
 }
