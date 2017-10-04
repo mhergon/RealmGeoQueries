@@ -10,6 +10,10 @@ import RealmSwift
 import CoreLocation
 import MapKit
 
+enum GeoQueriesError: Error {
+    case invalidRealm(String)
+}
+
 // MARK: - Public extensions
 public extension Realm {
     
@@ -23,10 +27,10 @@ public extension Realm {
      
      - returns: Found objects inside MKCoordinateRegion
      */
-    func findInRegion<T: Object>(type: T.Type, region: MKCoordinateRegion, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<T> {
+    func findInRegion<Element: Object>(type: Element.Type, region: MKCoordinateRegion, latitudeKey: String = "lat", longitudeKey: String = "lng") throws -> Results<Element> {
         
         // Query
-        return self
+        return try self
             .objects(type)
             .filterGeoBox(box: region.geoBox, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
@@ -42,10 +46,10 @@ public extension Realm {
      
      - returns: Found objects inside GeoBox
      */
-    func findInBox<T: Object>(type: T.Type, box: GeoBox, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<T> {
+    func findInBox<Element: Object>(type: Element.Type, box: GeoBox, latitudeKey: String = "lat", longitudeKey: String = "lng") throws -> Results<Element> {
         
         // Query
-        return self
+        return try self
             .objects(type)
             .filterGeoBox(box: box, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
@@ -63,10 +67,10 @@ public extension Realm {
      
      - returns: Found objects inside radius around the center coordinate
      */
-    func findNearby<T: Object>(type: T.Type, origin center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [T] {
+    func findNearby<Element: Object>(type: Element.Type, origin center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng") throws -> [Element] {
         
         // Query
-        return self
+        return try self
             .objects(type)
             .filterGeoBox(box: center.geoBox(radius: radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
             .filterGeoRadius(center: center, radius: radius, sortAscending: sort, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
@@ -75,7 +79,7 @@ public extension Realm {
     
 }
 
-public extension Results where Element: Object {
+public extension RealmCollection where Element: Object {
     
     /**
      Filter results from Realm query using MKCoordinateRegion
@@ -86,7 +90,10 @@ public extension Results where Element: Object {
      
      - returns: Filtered objects inside MKCoordinateRegion
      */
-    func filterGeoRegion(region: MKCoordinateRegion, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<Element> {
+    func filterGeoRegion(region: MKCoordinateRegion, latitudeKey: String = "lat", longitudeKey: String = "lng") throws -> Results<Element> {
+        
+        // Realm instance pre-check
+        guard let _ = realm else { throw GeoQueriesError.invalidRealm("RLMRealm instance is needed to call this method") }
         
         let box = region.geoBox
         
@@ -107,7 +114,10 @@ public extension Results where Element: Object {
      
      - returns: Filtered objects inside GeoBox
      */
-    func filterGeoBox(box: GeoBox, latitudeKey: String = "lat", longitudeKey: String = "lng") -> Results<Element> {
+    func filterGeoBox(box: GeoBox, latitudeKey: String = "lat", longitudeKey: String = "lng") throws -> Results<Element> {
+        
+        // Realm instance pre-check
+        guard let _ = realm else { throw GeoQueriesError.invalidRealm("RLMRealm instance is needed to call this method") }
         
         let topLeftPredicate = NSPredicate(format: "%K <= %f AND %K >= %f", latitudeKey, box.topLeft.latitude, longitudeKey, box.topLeft.longitude)
         let bottomRightPredicate = NSPredicate(format: "%K >= %f AND %K <= %f", latitudeKey, box.bottomRight.latitude, longitudeKey, box.bottomRight.longitude)
@@ -128,30 +138,37 @@ public extension Results where Element: Object {
      
      - returns: Found objects inside radius around the center coordinate
      */
-    func filterGeoRadius(center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [Element] {
+    func filterGeoRadius(center: CLLocationCoordinate2D, radius: Double, sortAscending sort: Bool?, latitudeKey: String = "lat", longitudeKey: String = "lng") throws -> [Element] {
+        
+        // Realm instance pre-check
+        guard let _ = realm else { throw GeoQueriesError.invalidRealm("RLMRealm instance is needed to call this method") }
         
         // Get box
-        let inBox = self.filterGeoBox(box: center.geoBox(radius: radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
+        let inBox = try filterGeoBox(box: center.geoBox(radius: radius), latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
         // add distance
         let distance = inBox.addDistance(center: center, latitudeKey: latitudeKey, longitudeKey: longitudeKey)
         
         // Inside radius
         let radius = distance.filter { (obj: Object) -> Bool in
-            
             return obj.objDist <= radius
-            
         }
         
         // Sort results
-        guard let s = sort else {
-            return radius
-        }
+        guard let s = sort else { return radius }
         
         return radius.sort(ascending: s)
         
     }
     
+    /// Sort by distance
+    ///
+    /// - Parameters:
+    ///   - center: Center coordinate
+    ///   - ascending: Ascendig or descending
+    ///   - latitudeKey: Set to use different latitude key in query (default: "lat")
+    ///   - longitudeKey: Set to use different longitude key in query (default: "lng")
+    /// - Returns: Sorted objects
     func sortByDistance(center: CLLocationCoordinate2D, ascending: Bool, latitudeKey: String = "lat", longitudeKey: String = "lng") -> [Element] {
         
         return self
@@ -163,9 +180,8 @@ public extension Results where Element: Object {
 }
 
 // MARK: - Public core extensions
-/**
- *  GeoBox struct. Set top-left and bottom-right coordinate to create a box
- */
+
+/// GeoBox struct. Set top-left and bottom-right coordinate to create a box
 public struct GeoBox {
     
     var topLeft: CLLocationCoordinate2D
@@ -197,7 +213,7 @@ public extension CLLocationCoordinate2D {
 
 public extension MKCoordinateRegion {
     
-    // Accessory function to convert MKCoordinateRegion to GeoBox
+    /// Accessory function to convert MKCoordinateRegion to GeoBox
     var geoBox: GeoBox {
         
         let maxLat = self.center.latitude + (self.span.latitudeDelta / 2.0)
@@ -214,8 +230,37 @@ public extension MKCoordinateRegion {
     
 }
 
+private extension Array where Element: Object {
+    
+    /**
+     Sorting function
+     
+     - parameter ascending: Ascending/Descending
+     
+     - returns: Array of [Object] sorted by distance
+     */
+    func sort(ascending: Bool = true) -> [Iterator.Element] {
+        
+        return self.sorted(by: { (a: Object, b: Object) -> Bool in
+            
+            if ascending {
+                
+                return a.objDist < b.objDist
+                
+            } else {
+                
+                return a.objDist > b.objDist
+                
+            }
+            
+        })
+        
+    }
+    
+}
+
 // MARK: - Private core extensions
-private extension Results where Element: Object {
+private extension RealmCollection where Element: Object {
     
     /**
      Add distance to sort results
@@ -241,35 +286,6 @@ private extension Results where Element: Object {
             return obj
             
         }
-        
-    }
-    
-}
-
-private extension Array where Element:Object {
-    
-    /**
-     Sorting function
-     
-     - parameter ascending: Ascending/Descending
-     
-     - returns: Array of [Object] sorted by distance
-     */
-    func sort(ascending: Bool = true) -> [Iterator.Element] {
-        
-        return self.sorted(by: { (a: Object, b: Object) -> Bool in
-            
-            if ascending {
-                
-                return a.objDist < b.objDist
-                
-            } else {
-                
-                return a.objDist > b.objDist
-                
-            }
-            
-        })
         
     }
     
