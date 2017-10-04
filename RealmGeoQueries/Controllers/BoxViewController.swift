@@ -21,8 +21,9 @@ class BoxViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        reloadData()
+        
     }
 
     //MARK:- Methods
@@ -52,7 +53,11 @@ class BoxViewController: UIViewController {
         
     }
     
-    //MARK:- MKMapViewDelegate
+}
+
+// MARK: - MKMapViewDelegate
+extension BoxViewController: MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         reloadData()

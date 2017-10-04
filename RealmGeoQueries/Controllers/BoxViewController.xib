@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +24,7 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BCw-CS-EPc">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <connections>
-                        <outlet property="delegate" destination="-1" id="ihY-di-eL5"/>
+                        <outlet property="delegate" destination="-1" id="5Rg-s4-fPn"/>
                     </connections>
                 </mapView>
             </subviews>
@@ -35,7 +36,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BCw-CS-EPc" secondAttribute="bottom" id="miK-B8-gTm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-119.5" y="24.5"/>
+            <point key="canvasLocation" x="-286" y="23"/>
         </view>
     </objects>
 </document>

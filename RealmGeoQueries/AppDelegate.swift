@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard !fileManager.fileExists(atPath: filePath) else {
             return
         }
-        
+
         if let db = Bundle.main.path(forResource: "RealmGeoQueriesPoints", ofType: "realm") {
             try! fileManager.copyItem(atPath: db, toPath: filePath)
         }

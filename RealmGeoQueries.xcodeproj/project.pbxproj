@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1ABE061F84F40700566726 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1ABE051F84F40700566726 /* MapKit.framework */; };
+		4B1ABE071F84F74900566726 /* RealmGeoQueriesPoints.realm in Resources */ = {isa = PBXBuildFile; fileRef = 4B1F42481F84BA7C00ABFE1B /* RealmGeoQueriesPoints.realm */; };
 		4B1F422B1F84B76D00ABFE1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F422A1F84B76D00ABFE1B /* AppDelegate.swift */; };
 		4B1F42321F84B76D00ABFE1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B1F42311F84B76D00ABFE1B /* Assets.xcassets */; };
 		4B1F423E1F84B89B00ABFE1B /* BoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B1F423C1F84B89B00ABFE1B /* BoxViewController.xib */; };
@@ -21,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B1ABE051F84F40700566726 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4B1F42271F84B76D00ABFE1B /* RealmGeoQueries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmGeoQueries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B1F422A1F84B76D00ABFE1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B1F42311F84B76D00ABFE1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B1F42511F84C5D900ABFE1B /* RealmSwift.framework in Frameworks */,
+				4B1ABE061F84F40700566726 /* MapKit.framework in Frameworks */,
 				4B1F42521F84C5D900ABFE1B /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,8 +89,8 @@
 			children = (
 				4B1F423D1F84B89B00ABFE1B /* BoxViewController.swift */,
 				4B1F423C1F84B89B00ABFE1B /* BoxViewController.xib */,
-				4B1F42441F84BA4900ABFE1B /* RadiusViewController.xib */,
 				4B1F42451F84BA4900ABFE1B /* RadiusViewController.swift */,
+				4B1F42441F84BA4900ABFE1B /* RadiusViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -111,6 +115,7 @@
 		4B1F424E1F84C5D800ABFE1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B1ABE051F84F40700566726 /* MapKit.framework */,
 				4B1F42501F84C5D900ABFE1B /* Realm.framework */,
 				4B1F424F1F84C5D900ABFE1B /* RealmSwift.framework */,
 			);
@@ -160,6 +165,11 @@
 					4B1F42261F84B76D00ABFE1B = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -187,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B1F42461F84BA4900ABFE1B /* RadiusViewController.xib in Resources */,
+				4B1ABE071F84F74900566726 /* RealmGeoQueriesPoints.realm in Resources */,
 				4B1F42321F84B76D00ABFE1B /* Assets.xcassets in Resources */,
 				4B1F423E1F84B89B00ABFE1B /* BoxViewController.xib in Resources */,
 			);
@@ -279,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -330,7 +341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -343,13 +354,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E6L68FW2WH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = RealmGeoQueries/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.RealmGeoQueries;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -361,13 +373,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E6L68FW2WH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = RealmGeoQueries/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.RealmGeoQueries;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.testing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
