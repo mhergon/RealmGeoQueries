@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.homepage         = 'https://github.com/mhergon/RealmGeoQueries'
   spec.authors          = { 'Marc Hervera' => 'mhergon@gmail.com' }
   spec.summary          = 'Realm GeoQueries made easy'
-  spec.source           = { :git => 'https://github.com/mhergon/RealmGeoQueries.git', :tag => 'v1.3' }
+  spec.source           = { :git => 'https://github.com/mhergon/RealmGeoQueries.git', :tag => 'v1.3-pre-release' }
   spec.source_files     = 'GeoQueries.swift'
   spec.ios.frameworks   = 'CoreLocation', 'MapKit'
   spec.dependency       'RealmSwift'
