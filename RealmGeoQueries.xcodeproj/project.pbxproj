@@ -26,6 +26,11 @@
 		4BC1E8C81F84FDE000AF3BE0 /* GeoQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F424C1F84BB8500ABFE1B /* GeoQueries.swift */; };
 		4BC1E8C91F84FE0D00AF3BE0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1F42501F84C5D900ABFE1B /* Realm.framework */; };
 		4BC1E8CA1F84FE0D00AF3BE0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1F424F1F84C5D900ABFE1B /* RealmSwift.framework */; };
+		4BC1E8D21F85529D00AF3BE0 /* RealmGeoQueriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1E8D11F85529D00AF3BE0 /* RealmGeoQueriesTests.swift */; };
+		4BC1E8D91F85539B00AF3BE0 /* GeoQueries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC1E8BB1F84FDB900AF3BE0 /* GeoQueries.framework */; };
+		4BC1E8DA1F8553A600AF3BE0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1F42501F84C5D900ABFE1B /* Realm.framework */; };
+		4BC1E8DB1F8553A600AF3BE0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1F424F1F84C5D900ABFE1B /* RealmSwift.framework */; };
+		4BC1E8DE1F8556D900AF3BE0 /* TestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1E8DD1F8556D900AF3BE0 /* TestPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4BC1E8BA1F84FDB900AF3BE0;
 			remoteInfo = GeoQueries;
+		};
+		4BC1E8D41F85529D00AF3BE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B1F421F1F84B76D00ABFE1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B1F42261F84B76D00ABFE1B;
+			remoteInfo = RealmGeoQueries;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -71,6 +83,10 @@
 		4BC1E8BB1F84FDB900AF3BE0 /* GeoQueries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeoQueries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC1E8BD1F84FDB900AF3BE0 /* GeoQueries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoQueries.h; sourceTree = "<group>"; };
 		4BC1E8BE1F84FDB900AF3BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BC1E8CF1F85529D00AF3BE0 /* RealmGeoQueriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealmGeoQueriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BC1E8D11F85529D00AF3BE0 /* RealmGeoQueriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGeoQueriesTests.swift; sourceTree = "<group>"; };
+		4BC1E8D31F85529D00AF3BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BC1E8DD1F8556D900AF3BE0 /* TestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BC1E8CC1F85529D00AF3BE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BC1E8DA1F8553A600AF3BE0 /* Realm.framework in Frameworks */,
+				4BC1E8DB1F8553A600AF3BE0 /* RealmSwift.framework in Frameworks */,
+				4BC1E8D91F85539B00AF3BE0 /* GeoQueries.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,6 +128,7 @@
 			children = (
 				4B1F42291F84B76D00ABFE1B /* RealmGeoQueries */,
 				4BC1E8BC1F84FDB900AF3BE0 /* GeoQueries */,
+				4BC1E8D01F85529D00AF3BE0 /* RealmGeoQueriesTests */,
 				4B1F42281F84B76D00ABFE1B /* Products */,
 				4B1F424E1F84C5D800ABFE1B /* Frameworks */,
 			);
@@ -112,6 +139,7 @@
 			children = (
 				4B1F42271F84B76D00ABFE1B /* RealmGeoQueries.app */,
 				4BC1E8BB1F84FDB900AF3BE0 /* GeoQueries.framework */,
+				4BC1E8CF1F85529D00AF3BE0 /* RealmGeoQueriesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +213,16 @@
 			path = GeoQueries;
 			sourceTree = "<group>";
 		};
+		4BC1E8D01F85529D00AF3BE0 /* RealmGeoQueriesTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BC1E8DD1F8556D900AF3BE0 /* TestPoint.swift */,
+				4BC1E8D11F85529D00AF3BE0 /* RealmGeoQueriesTests.swift */,
+				4BC1E8D31F85529D00AF3BE0 /* Info.plist */,
+			);
+			path = RealmGeoQueriesTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -237,6 +275,24 @@
 			productReference = 4BC1E8BB1F84FDB900AF3BE0 /* GeoQueries.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		4BC1E8CE1F85529D00AF3BE0 /* RealmGeoQueriesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BC1E8D61F85529D00AF3BE0 /* Build configuration list for PBXNativeTarget "RealmGeoQueriesTests" */;
+			buildPhases = (
+				4BC1E8CB1F85529D00AF3BE0 /* Sources */,
+				4BC1E8CC1F85529D00AF3BE0 /* Frameworks */,
+				4BC1E8CD1F85529D00AF3BE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BC1E8D51F85529D00AF3BE0 /* PBXTargetDependency */,
+			);
+			name = RealmGeoQueriesTests;
+			productName = RealmGeoQueriesTests;
+			productReference = 4BC1E8CF1F85529D00AF3BE0 /* RealmGeoQueriesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -260,6 +316,11 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
+					4BC1E8CE1F85529D00AF3BE0 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4B1F42261F84B76D00ABFE1B;
+					};
 				};
 			};
 			buildConfigurationList = 4B1F42221F84B76D00ABFE1B /* Build configuration list for PBXProject "RealmGeoQueries" */;
@@ -277,6 +338,7 @@
 			targets = (
 				4B1F42261F84B76D00ABFE1B /* RealmGeoQueries */,
 				4BC1E8BA1F84FDB900AF3BE0 /* GeoQueries */,
+				4BC1E8CE1F85529D00AF3BE0 /* RealmGeoQueriesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -294,6 +356,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4BC1E8B91F84FDB900AF3BE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BC1E8CD1F85529D00AF3BE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,6 +413,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BC1E8CB1F85529D00AF3BE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BC1E8DE1F8556D900AF3BE0 /* TestPoint.swift in Sources */,
+				4BC1E8D21F85529D00AF3BE0 /* RealmGeoQueriesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -351,6 +429,11 @@
 			isa = PBXTargetDependency;
 			target = 4BC1E8BA1F84FDB900AF3BE0 /* GeoQueries */;
 			targetProxy = 4BC1E8C01F84FDB900AF3BE0 /* PBXContainerItemProxy */;
+		};
+		4BC1E8D51F85529D00AF3BE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B1F42261F84B76D00ABFE1B /* RealmGeoQueries */;
+			targetProxy = 4BC1E8D41F85529D00AF3BE0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -560,6 +643,46 @@
 			};
 			name = Release;
 		};
+		4BC1E8D71F85529D00AF3BE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = RealmGeoQueriesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.RealmGeoQueriesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RealmGeoQueries.app/RealmGeoQueries";
+			};
+			name = Debug;
+		};
+		4BC1E8D81F85529D00AF3BE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = RealmGeoQueriesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mhergon.RealmGeoQueriesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RealmGeoQueries.app/RealmGeoQueries";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -586,6 +709,15 @@
 			buildConfigurations = (
 				4BC1E8C51F84FDB900AF3BE0 /* Debug */,
 				4BC1E8C61F84FDB900AF3BE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BC1E8D61F85529D00AF3BE0 /* Build configuration list for PBXNativeTarget "RealmGeoQueriesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BC1E8D71F85529D00AF3BE0 /* Debug */,
+				4BC1E8D81F85529D00AF3BE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
