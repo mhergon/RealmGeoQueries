@@ -46,10 +46,11 @@ $(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework
 
 ### Requirements
 
-| Version | Language  | Minimum iOS Target  |
+| Version | Language | Minimum iOS Target |
 |:--------------------:|:---------------------------:|:---------------------------:|
-|          1.2         |            Swift 3.0            |            iOS 9            |
-|          1.1         |            Swift 2.x            |            iOS 8            |
+|          1.3         |            Swift 4.x / Realm 3.x            |            iOS 9            |
+|          1.2         |            Swift 3.0 / Realm 2.x            |            iOS 9            |
+|          1.1         |            Swift 2.x / Realm 2.x            |            iOS 8            |
 
 ### Usage
 
@@ -100,4 +101,4 @@ See ```GeoQueries.swift``` for more options.
 
 Licensed under Apache License v2.0.
 <br>
-Copyright 2015 Marc Hervera.
+Copyright 2017 Marc Hervera.

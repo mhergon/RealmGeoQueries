@@ -11,8 +11,8 @@ import RealmSwift
 
 class Point: Object {
     
-    dynamic var name = ""
-    dynamic var lat: Double = 0.0
-    dynamic var lng: Double = 0.0
+    @objc dynamic var name = ""
+    @objc dynamic var lat: Double = 0.0
+    @objc dynamic var lng: Double = 0.0
     
 }

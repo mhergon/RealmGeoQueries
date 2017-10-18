@@ -1,36 +1,31 @@
 //
-//  BoxViewController.swift
+//  BoViewController.swift
 //  RealmGeoQueries
 //
-//  Created by mhergon on 5/12/15.
-//  Copyright © 2015 Marc Hervera. All rights reserved.
+//  Created by mhergon on 4/10/17.
+//  Copyright © 2017 mhergon. All rights reserved.
 //
 
 import UIKit
 import MapKit
 import RealmSwift
 
-private let AnnotationIdentifier = "AnnotationIdentifier"
+fileprivate let AnnotationIdentifier = "AnnotationIdentifier"
 
+class BoxViewController: UIViewController {
 
-class BoxViewController: UIViewController, MKMapViewDelegate {
-
-    //MARK:- Properties
+    // MARK: - Properties
     @IBOutlet weak var mapView: MKMapView!
     
-    var results: Results<Point>?
+    fileprivate var results: Results<Point>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        reloadData()
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //MARK:- Methods
     func reloadData() {
         
@@ -58,7 +53,11 @@ class BoxViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    //MARK:- MKMapViewDelegate
+}
+
+// MARK: - MKMapViewDelegate
+extension BoxViewController: MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         reloadData()

@@ -2,37 +2,31 @@
 //  RadiusViewController.swift
 //  RealmGeoQueries
 //
-//  Created by mhergon on 5/12/15.
-//  Copyright © 2015 Marc Hervera. All rights reserved.
+//  Created by mhergon on 4/10/17.
+//  Copyright © 2017 mhergon. All rights reserved.
 //
 
 import UIKit
 import MapKit
 import RealmSwift
 
-private let AnnotationIdentifier = "AnnotationIdentifier"
-
+fileprivate let AnnotationIdentifier = "AnnotationIdentifier"
 
 class RadiusViewController: UIViewController {
 
-    //MARK:- Properties
+    // MARK: - Properties
     @IBOutlet weak var mapView: MKMapView!
     
-    var results: [Point]?
-    
+    fileprivate var results: [Point]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        reloadData()
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    //MARK:- Methods
+    // MARK:- Methods
     func reloadData() {
         
         // Get results
@@ -64,15 +58,19 @@ class RadiusViewController: UIViewController {
         mapView.add(circle)
         
     }
+
+}
+
+// MARK: - MKMapViewDelegate
+extension RadiusViewController: MKMapViewDelegate {
     
-    //MARK:- MKMapViewDelegate
-    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         reloadData()
         
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         // User location
         if annotation is MKUserLocation {
@@ -96,7 +94,7 @@ class RadiusViewController: UIViewController {
         
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
         let circle = MKCircleRenderer(overlay: overlay)
         circle.strokeColor = UIColor.red
@@ -105,5 +103,5 @@ class RadiusViewController: UIViewController {
         return circle
         
     }
-
+    
 }

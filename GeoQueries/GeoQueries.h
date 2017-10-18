@@ -2,8 +2,8 @@
 //  GeoQueries.h
 //  GeoQueries
 //
-//  Created by mhergon on 22/4/17.
-//  Copyright © 2017 Marc Hervera. All rights reserved.
+//  Created by mhergon on 4/10/17.
+//  Copyright © 2017 mhergon. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
