@@ -183,11 +183,11 @@ public extension RealmCollection where Element: Object {
 
 /// GeoBox struct. Set top-left and bottom-right coordinate to create a box
 public struct GeoBox {
-    
-    var topLeft: CLLocationCoordinate2D
-    var bottomRight: CLLocationCoordinate2D
-    
-    init(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
+
+    public var topLeft: CLLocationCoordinate2D
+    public var bottomRight: CLLocationCoordinate2D
+
+    public init(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
         self.topLeft = topLeft
         self.bottomRight = bottomRight
     }
