@@ -207,7 +207,7 @@ public extension CLLocationCoordinate2D {
         #if swift(>=4.2)
         return MKCoordinateRegion(center: self, latitudinalMeters: radius * 2.0, longitudinalMeters: radius * 2.0).geoBox
         #else
-        return MKCoordinateRegionMakeWithDistance(self, radius * 2.0, radius * 2.0).geoBox
+        return MKCoordinateRegion.init(center: self, latitudinalMeters: radius * 2.0, longitudinalMeters: radius * 2.0).geoBox
         #endif
     }
     

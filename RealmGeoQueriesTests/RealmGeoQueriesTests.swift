@@ -65,7 +65,7 @@ class RealmGeoQueriesTests: XCTestCase {
     // MARK: - General methods
     func testFindInRegionSomePoints() {
 
-        let region = MKCoordinateRegionMake(centerCoordinate, MKCoordinateSpanMake(2.0, 2.0))
+        let region = MKCoordinateRegion.init(center: centerCoordinate, span: MKCoordinateSpan.init(latitudeDelta: 2.0, longitudeDelta: 2.0))
         let count = try! realm?.findInRegion(type: TestPoint.self, region: region).count ?? 0
         XCTAssertGreaterThan(count, 0)
         
@@ -97,7 +97,7 @@ class RealmGeoQueriesTests: XCTestCase {
         
         let all = realm?.objects(TestPoint.self)
         
-        let region = MKCoordinateRegionMake(centerCoordinate, MKCoordinateSpanMake(2.0, 2.0))
+        let region = MKCoordinateRegion.init(center: centerCoordinate, span: MKCoordinateSpan.init(latitudeDelta: 2.0, longitudeDelta: 2.0))
         
         do {
         
@@ -122,7 +122,7 @@ class RealmGeoQueriesTests: XCTestCase {
         point.lng = 2.43782
         list.append(point)
         
-        let region = MKCoordinateRegionMake(centerCoordinate, MKCoordinateSpanMake(2.0, 2.0))
+        let region = MKCoordinateRegion.init(center: centerCoordinate, span: MKCoordinateSpan.init(latitudeDelta: 2.0, longitudeDelta: 2.0))
         
         do {
 
