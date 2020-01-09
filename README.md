@@ -40,6 +40,16 @@ $(SRCROOT)/Carthage/Build/iOS/Realm.framework
 $(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework
 ```
 
+### Swift Package Manager
+
+Once you have your Swift package set up, adding RealmGeoQueries as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/mhergon/RealmGeoQueries.git", from: "1.4.0")
+]
+```
+
 ### Manually installation
 
 [Download](https://github.com/mhergon/RealmGeoQueries/raw/master/GeoQueries.swift) (right-click) and add to your project.
@@ -101,4 +111,4 @@ See ```GeoQueries.swift``` for more options.
 
 Licensed under Apache License v2.0.
 <br>
-Copyright 2017 Marc Hervera.
+Copyright 2020 Marc Hervera.
