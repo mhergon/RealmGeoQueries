@@ -58,6 +58,7 @@ dependencies: [
 
 | Version | Language | Minimum iOS Target |
 |:--------------------:|:---------------------------:|:---------------------------:|
+|          1.4         |            Swift 5.x / Realm 5.x            |            iOS 9            |
 |          1.3         |            Swift 4.x / Realm 3.x            |            iOS 9            |
 |          1.2         |            Swift 3.0 / Realm 2.x            |            iOS 9            |
 |          1.1         |            Swift 2.x / Realm 2.x            |            iOS 8            |
