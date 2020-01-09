@@ -55,7 +55,7 @@ class RadiusViewController: UIViewController {
         // Add circle
         mapView.removeOverlays(mapView.overlays)
         let circle = MKCircle(center: mapView.centerCoordinate, radius: radius)
-        mapView.add(circle)
+        mapView.addOverlay(circle)
         
     }
 
