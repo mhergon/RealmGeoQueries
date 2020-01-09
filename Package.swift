@@ -17,6 +17,7 @@ let package = Package(
         .target(
             name: "RealmGeoQueries",
             dependencies: ["RealmSwift"],
+            path: ".",
             sources: ["GeoQueries"]
         )
     ]
