@@ -73,7 +73,7 @@ let results = try! Realm()
 Search around the center with radius in meters;
 ```swift
 let results = try! Realm()
-    .findNearby(YourModeltype: Class.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
+    .findNearby(type: YourModelClass.self, origin: mapView.centerCoordinate, radius: 500, sortAscending: nil)
 ```
 <br>
 
